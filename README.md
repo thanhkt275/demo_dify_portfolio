@@ -95,4 +95,5 @@ Expected: the script prints a success message and the extracted HTML snippet.
 - If you want the app to support more response shapes, add additional candidate paths in `extract_html`.
 - Consider sanitizing or sandboxing untrusted HTML before rendering in production.
 
-
+![alt text](image.png)
+![alt text](image-1.png)
