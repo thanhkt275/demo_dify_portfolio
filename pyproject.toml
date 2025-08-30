@@ -1,0 +1,11 @@
+[project]
+name = "demo-dify"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "requests>=2.32.5",
+    "streamlit>=1.49.1",
+    "urllib3>=2.5.0",
+]
