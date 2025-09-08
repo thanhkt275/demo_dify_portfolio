@@ -1,0 +1,305 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: HTML portfolio
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/gemini:0.5.4@22fa3d100c55f8fc4b2837d8fb0831e3c8de333a5a5b028e073d502d2df9cb35
+kind: app
+version: 0.4.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInLoop: false
+        sourceType: start
+        targetType: llm
+      id: 1756263714792-source-1756264302288-target
+      source: '1756263714792'
+      sourceHandle: source
+      target: '1756264302288'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: end
+      id: 1756264302288-source-1756270581073-target
+      source: '1756264302288'
+      sourceHandle: source
+      target: '1756270581073'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: Bắt đầu
+        type: start
+        variables:
+        - label: full_name
+          max_length: 48
+          options: []
+          required: true
+          type: text-input
+          variable: full_name
+        - label: job_title
+          max_length: 96
+          options: []
+          required: true
+          type: text-input
+          variable: job_title
+        - label: about_me
+          max_length: 4096
+          options: []
+          required: true
+          type: paragraph
+          variable: about_me
+        - label: skills
+          max_length: 256
+          options: []
+          required: true
+          type: text-input
+          variable: skills
+        - label: email
+          max_length: 48
+          options: []
+          required: false
+          type: text-input
+          variable: email
+        - label: phone
+          max_length: 10
+          options: []
+          required: false
+          type: text-input
+          variable: phone
+        - label: location
+          max_length: 48
+          options: []
+          required: true
+          type: text-input
+          variable: location
+        - label: birth
+          max_length: 4
+          options: []
+          required: true
+          type: text-input
+          variable: birth
+        - label: experience_year
+          max_length: 4
+          options: []
+          required: true
+          type: text-input
+          variable: experience_years
+        - label: education
+          max_length: 256
+          options: []
+          required: true
+          type: paragraph
+          variable: education
+        - label: social_links
+          max_length: 256
+          options: []
+          required: true
+          type: paragraph
+          variable: social_links
+      height: 350
+      id: '1756263714792'
+      position:
+        x: 30
+        y: 375
+      positionAbsolute:
+        x: 30
+        y: 375
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            code_execution: false
+            temperature: 0.7
+            url_context: false
+          mode: chat
+          name: gemini-2.5-pro
+          provider: langgenius/gemini/google
+        prompt_config:
+          jinja2_variables: []
+        prompt_template:
+        - edition_type: basic
+          id: bd329b89-834b-483e-9bcc-33b615a75cfd
+          role: system
+          text: "```xml\n<instruction>\nBạn sẽ nhận được dữ liệu JSON với các trường\
+            \ sau:\n- personal_info: Thông tin cá nhân (tên, công việc, liên lạc...)\n\
+            - professional_info: Thông tin nghề nghiệp (giới thiệu, kỹ năng, kinh\
+            \ nghiệm, dự án...)\n- design_preferences: Tùy chỉnh thiết kế (màu sắc,\
+            \ phong cách, các tính năng bổ sung...)\n\nMột trang web portfolio cá\
+            \ nhân hoàn chỉnh cần phải có các phần sau đây:\n1. Header/Hero Section:\
+            \ Tên, chức danh, ảnh đại diện (placeholder nếu không có)\n2. About Section:\
+            \ Giới thiệu chi tiết về bản thân\n3. Skills Section: Hiển thị kỹ năng\
+            \ dưới dạng thanh tiến độ hoặc tags\n4. Experience Section: Kinh nghiệm\
+            \ làm việc theo timeline\n5. Projects Section: Dự án nổi bật với mô tả\n\
+            6. Education Section: Học vấn và chứng chỉ\n7. Contact Section: Thông\
+            \ tin liên hệ và form (nếu yêu cầu)\n\nBên cạnh đó, cần chú ý đến một\
+            \ số yếu tố sau:\n- Cấu trúc HTML theo tiêu chuẩn W3C.\n- Thiết kế responsive\
+            \ cho từng breakpoint và áp dụng CSS hiện đại như Flexbox/Grid.\n- Tùy\
+            \ biến phong cách thiết kế (modern, classic, minimal, creative) và màu\
+            \ sắc theo yêu cầu.\n- Ap dụng các tính năng bổ sung như smooth scrolling,\
+            \ parallax effects, loading animation, typing effect cho hero text, progress\
+            \ bars cho skills, lightbox cho projects, dark/light mode toggle (nếu\
+            \ phù hợp)).\n- Tối ưu SEO và Performance qua việc thêm meta tags, optimized\
+            \ images, minified CSS, form liên hệ (nếu cần), cùng nhiều yếu tố khác.\n\
+            - Tránh XSS bằng cách sanitize input và xử lý content cơ bản như format,\
+            \ parse, extract từ dữ liệu thiếu/trống.\n</instruction>\n\n<example>\n\
+            Input:\n{\n  \"personal_info\": {\n    \"name\": \"Nguyễn Văn Anh\",\n\
+            \    \"job\": \"Software Engineer\",\n    \"contact\": \"anhnv@gmail.com\"\
+            \n  },\n  \"professional_info\": {\n    \"about_me\": \"I am a software\
+            \ engineer with 5 years of experience.\",\n    \"skills\": [\"Java\",\
+            \ \"Python\", \"HTML/CSS\"],\n    \"experience\": [\n      {\"company\"\
+            : \"ABC Corp\", \"position\": \"Software Developer\", \"years\": \"2016-2019\"\
+            },\n      {\"company\": \"XYZ Corp\", \"position\": \"Senior Software\
+            \ Engineer\", \"years\": \"2019-present\"}\n    ]\n  },\n  \"design_preferences\"\
+            : {\n    \"design_style\": \"modern\",\n    \"primary_color\": \"blue\"\
+            ,\n    \"features\": [\"smooth_scrolling\", \"parallax_effects\"]\n  }\n\
+            }\n\nOutput:\n...HTML code of the portfolio page...\n</example>\n\n<example>\n\
+            Input:\n{\n  \"personal_info\": {\n    \"name\": \"Trần Thị B\",\n   \
+            \ \"job\": \"Data Scientist\",\n    \"contact\": \"tranb@gmail.com\"\n\
+            \  },\n  \"professional_info\": {\n    \"about_me\": \"I am a data scientist\
+            \ with expertise in machine learning.\",\n    \"skills\": [\"Python\"\
+            , \"R\", \"SQL\", \"Machine Learning\"],\n    \"experience\": [\n    \
+            \  {\"company\": \"Data Science Inc\", \"position\": \"Data Analyst\"\
+            , \"years\": \"2015-2018\"},\n      {\"company\": \"ML Corp\", \"position\"\
+            : \"Data Scientist\", \"years\": \"2018-present\"}\n    ]\n  },\n  \"\
+            design_preferences\": {\n    \"design_style\": \"minimal\",\n    \"primary_color\"\
+            : \"purple\",\n    \"features\": [\"smooth_scrolling\", \"light_mode_dark_mode_toggle\"\
+            ]\n  }\n}\n\nOutput:\n...HTML code of the portfolio page...\n</example>\n\
+            \n<example>\nInput:\n{\n  \"personal_info\": {\n    \"name\": \"Lê Văn\
+            \ C\",\n    \"job\": \"UI/UX Designer\",\n    \"contact\": \"levanc@gmail.com\"\
+            \n  },\n  \"professional_info\": {\n    \"about_me\": \"I am a UI/UX designer\
+            \ with a passion for creating intuitive interfaces.\",\n    \"skills\"\
+            : [\"Sketch\", \"Figma\", \"Adobe XD\", \"Interaction Design\"],\n   \
+            \ \"experience\": [\n      {\"company\": \"Design Studio\", \"position\"\
+            : \"UI Designer\", \"years\": \"2012-2015\"},\n      {\"company\": \"\
+            Design Agency\", \"position\": \"Senior UX Designer\", \"years\": \"2015-present\"\
+            }\n    ]\n  },\n  \"design_preferences\": {\n    \"design_style\": \"\
+            creative\",\n    \"primary_color\": \"green\",\n    \"features\": [\"\
+            parallax_effects\", \"loading_animation\", \"typing_effect_for_hero_text\"\
+            ]\n  }\n}\n\nOutput:\n...HTML code of the portfolio page...\n</example>\n\
+            ```\n\nLưu ý: Tránh xuất ra các ký tự đặc biệt như <, >, &, \" trong đầu\
+            \ ra để tránh lỗi với xuất dạng XML.\nĐầu ra chỉ là mã HTML, bắt đầu bằng\
+            \ <!DOCTYPE \n"
+        - id: 6119376d-932a-490c-b211-37941a912857
+          role: user
+          text: "<user>\n{\n  \"full_name\": {{#1756263714792.full_name#}},\n  \"\
+            job_title\": {{#1756263714792.job_title#}},\n  \"about_me\": {{#1756263714792.about_me#}},\n\
+            \  \"skills\": {{#1756263714792.skills#}},\n  \"email\": {{#1756263714792.email#}},\n\
+            \  \"phone\": {{#1756263714792.phone#}},\n  \"location\": {{#1756263714792.location#}},\n\
+            \  \"birth\":{{#1756263714792.birth#}}\",\n  \"experience_years\": {{#1756263714792.experience_years#}},\n\
+            \  \"education\": {{#1756263714792.education#}},\n  \"social_links\":\
+            \ {{#1756263714792.social_links#}}\n}"
+        selected: true
+        structured_output_enabled: true
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '1756264302288'
+      position:
+        x: 334
+        y: 375
+      positionAbsolute:
+        x: 334
+        y: 375
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1756264302288'
+          - text
+          value_type: string
+          variable: output
+        selected: false
+        title: End
+        type: end
+      height: 90
+      id: '1756270581073'
+      position:
+        x: 846.9321351910697
+        y: 375
+      positionAbsolute:
+        x: 846.9321351910697
+        y: 375
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: 49.568860604537235
+      y: -0.9629967151070389
+      zoom: 0.6855942083108488

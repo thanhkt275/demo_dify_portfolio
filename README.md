@@ -35,6 +35,7 @@ Recommended: create a file `.streamlit/secrets.toml` with:
 DIFY_API_KEY = "your_api_key_here"
 BASE_URL = "https://api.dify.ai"
 WORKFLOW_ID = ""  # optional
+HTTP_TIMEOUT = 180  # optional, seconds
 ```
 
 Or export env vars in your shell:
@@ -43,6 +44,7 @@ Or export env vars in your shell:
 export DIFY_API_KEY=your_api_key_here
 export BASE_URL=https://api.dify.ai
 export WORKFLOW_ID=
+export HTTP_TIMEOUT=180
 ```
 
 ## Run
@@ -88,7 +90,7 @@ Expected: the script prints a success message and the extracted HTML snippet.
 
 - If you see `Thiếu DIFY_API_KEY` in the UI, ensure `DIFY_API_KEY` is present in `.streamlit/secrets.toml` or the environment.
 - If Streamlit shows the raw response but no HTML, check that your Workflow's final node outputs either `html` or an `output` that contains the full HTML. The extractor now checks `data.outputs.output` first.
-- Large HTML payloads may take time; the HTTP timeout in `app.py` is set to 120 seconds for blocking response mode.
+- Large HTML payloads may take time; the HTTP timeout in `app.py` defaults to 180 seconds for blocking response mode (configurable via `HTTP_TIMEOUT`).
 
 ## Notes & Next steps
 
